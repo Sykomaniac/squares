@@ -1,0 +1,47 @@
+<html>
+<head>
+  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+  <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <style type="text/css">
+    body {
+      margin: 40px;
+    }
+
+    #wrapper {
+      display: grid;
+      grid-template-columns: minmax(125px, max-content) repeat(auto-fill, 125px);
+      grid-gap: 10px;
+      background-color: #fff;
+      color: #444;
+    }
+
+    .box {
+      color: #000;
+      border: 1px solid #000;
+      border-radius: 5px;
+      font-size: 125%;
+      text-align: center;
+      padding: 1em;
+      text-transform: capitalize;
+    }
+  </style>
+</head>
+<body>
+  <script type="text/javascript">
+    $(function() {
+      $.ajax({
+        url: 'https://randomuser.me/api/?results=100&nat=us,gb,au,ie,nz&inc=name&noinfo',
+        dataType: 'json',
+        success: function(data) {
+          $.each(data.results, function(idx, result) {
+            $('<div class="box">' + result.name.first +'</div>').appendTo('#wrapper');
+          })
+        }
+      });
+    });
+  </script>
+  <div id="wrapper">
+    <!-- Will be appended to -->
+  </div>
+</body>
+</html>
